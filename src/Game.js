@@ -25,7 +25,7 @@ class Game extends Component {
         },
         {
             id: 3,
-            name: "Big boi",
+            name: "Supreme Boi",
             cost: 250,
             strength: 25,
         },
