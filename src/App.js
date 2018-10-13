@@ -25,13 +25,17 @@ class App extends Component {
       <div>
         <h1>{this.state.gameRunning}</h1>
       {this.state.gameRunning === true
-        ? <Game waveLength={30}
+        ? <Game waveLength={60}
                 initialWaveStrength={5}
                 initialLootPerSecond={1}
                 initialStrength={0}
                 initialLoot={25}
                 endGame={this.endGame} /> 
-        : <button className="btn btn-primary" onClick={this.startGame}>Start game</button>}
+        : <div className="text-center" style={{marginTop: '40vh'}}>
+            <button className="btn btn-success btn-lg" 
+                    onClick={this.startGame}>
+                    Start game</button>
+          </div>}
       </div>
     );
   }

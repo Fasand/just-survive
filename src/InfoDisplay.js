@@ -5,7 +5,12 @@ const InfoDisplay = (props) => {
     let progress_width =
         (1 - wave.secondsUntil/props.state.secondsBetweenWaves)
         * 100;
-    let progress_status = progress_width < 70 ? 'success' : 'danger'
+    // Compute the progress status
+    let progress_status;
+    if (progress_width < 50) progress_status = 'success';
+    else if (progress_width < 70) progress_status = 'warning';
+    else progress_status = 'danger';
+
     return (
         <div className="row">
             <h5 className="col-md-2 pt-3">Loot: <strong>{props.state.loot}</strong></h5>
