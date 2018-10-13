@@ -19,9 +19,27 @@ class Game extends Component {
         },
         {
             id: 2,
-            name: "Intermediate looter",
+            name: "Looter on a scooter",
             cost: 250,
             lootPerSecond: 12,
+        },
+        {
+            id: 3,
+            name: "Rockomotor looter",
+            cost: 1000,
+            lootPerSecond: 60,
+        },
+        {
+            id: 4,
+            name: "Antique hoarder",
+            cost: 3500,
+            lootPerSecond: 240,
+        },
+        {
+            id: 5,
+            name: "Pensioners",
+            cost: 5000,
+            lootPerSecond: 350,
         },
     ];
 
@@ -49,6 +67,24 @@ class Game extends Component {
             name: "Big boi",
             cost: 250,
             strength: 25,
+        },
+        {
+            id: 4,
+            name: "Scooter monkey",
+            cost: 700,
+            strength: 80,
+        },
+        {
+            id: 5,
+            name: "Tank of Justice",
+            cost: 1500,
+            strength: 200,
+        },
+        {
+            id: 6,
+            name: "A fucking plane",
+            cost: 4000,
+            strength: 500,
         },
     ]
 
