@@ -23,6 +23,12 @@ class Game extends Component {
             cost: 250,
             lootPerSecond: 12,
         },
+        {
+            id: 3,
+            name: "Big boi",
+            cost: 250,
+            strength: 25,
+        },
     ];
 
     DEFENDER_TYPES = [
