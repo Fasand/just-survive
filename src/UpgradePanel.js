@@ -16,7 +16,8 @@ const UpgradePanel = (props) => (
                                 <button className="btn btn-primary"
                                         type="looter"
                                         id={looter.id} 
-                                        onClick={props.upgradeHandler}>
+                                        onClick={props.upgradeHandler}
+                                        disabled={props.loot < looter.cost}>
                                     Buy for {looter.cost} loot
                                 </button>
                             </div>
@@ -38,7 +39,8 @@ const UpgradePanel = (props) => (
                                 <button className="btn btn-primary"
                                         type="defender"
                                         id={defender.id} 
-                                        onClick={props.upgradeHandler}>
+                                        onClick={props.upgradeHandler}
+                                        disabled={props.loot < defender.cost}>
                                     Buy for {defender.cost} loot
                                 </button>
                             </div>
