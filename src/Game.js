@@ -4,42 +4,44 @@ import UpgradePanel from './UpgradePanel';
 
 class Game extends Component {
 
+    WAVE_STRENGTHS = [5, 10, 20, 35, 60, 120, 300, 450, 600, 800, 1000]
+    
     INITIAL_LOOTERS = [
         {
             id: 0,
             name: "Lame looter",
-            cost: 30,
+            cost: 15,
             lootPerSecond: 1,
         },
         {
             id: 1,
             name: "Rookie looter",
             cost: 100,
-            lootPerSecond: 4,
+            lootPerSecond: 8,
         },
         {
             id: 2,
             name: "Looter on a scooter",
-            cost: 250,
-            lootPerSecond: 12,
+            cost: 500,
+            lootPerSecond: 24,
         },
         {
             id: 3,
             name: "Rockomotor looter",
-            cost: 1000,
-            lootPerSecond: 40,
+            cost: 2200,
+            lootPerSecond: 69,
         },
         {
             id: 4,
             name: "Antique hoarder",
-            cost: 3500,
-            lootPerSecond: 120,
+            cost: 9001,
+            lootPerSecond: 200,
         },
         {
             id: 5,
             name: "Pensioners",
-            cost: 5000,
-            lootPerSecond: 200,
+            cost: 50000,
+            lootPerSecond: 600,
         },
     ];
 
@@ -47,44 +49,44 @@ class Game extends Component {
         {
             id: 0,
             name: "Defenseless child",
-            cost: 20,
+            cost: 5,
             strength: 1,
         },
         {
             id: 1,
             name: "Jeff",
             cost: 50,
-            strength: 3,
+            strength: 4,
         },
         {
             id: 2,
             name: "Sir Killcelot",
-            cost: 100,
+            cost: 250,
             strength: 8,
         },
         {
             id: 3,
             name: "Big boi",
-            cost: 250,
-            strength: 25,
+            cost: 1000,
+            strength: 20,
         },
         {
             id: 4,
             name: "Scooter monkey",
-            cost: 700,
-            strength: 80,
+            cost: 4500,
+            strength: 50,
         },
         {
             id: 5,
             name: "Tank of Justice",
-            cost: 1500,
-            strength: 200,
+            cost: 20000,
+            strength: 90,
         },
         {
             id: 6,
             name: "A fucking plane",
-            cost: 4000,
-            strength: 500,
+            cost: 50000,
+            strength: 150,
         },
     ];
 
@@ -112,7 +114,7 @@ class Game extends Component {
     }
     
     updateCost(cost) {
-        return Math.round(cost * 1.05);
+        return Math.round(cost * 1.15);
     }
 
     upgradeHandler(e) {
@@ -154,7 +156,7 @@ class Game extends Component {
     }
 
     getNextWaveStrength() {
-        return this.state.wave.strength * 3;
+        return this.WAVE_STRENGTHS[this.state.wave.number];
     }
 
     isGameOver() {

@@ -25,11 +25,11 @@ class App extends Component {
       <div>
         <h1>{this.state.gameRunning}</h1>
       {this.state.gameRunning === true
-        ? <Game waveLength={60}
+        ? <Game waveLength={40}
                 initialWaveStrength={5}
                 initialLootPerSecond={1}
                 initialStrength={0}
-                initialLoot={25}
+                initialLoot={5}
                 endGame={this.endGame} /> 
         : <div className="text-center" style={{marginTop: '40vh'}}>
             <button className="btn btn-success btn-lg" 
