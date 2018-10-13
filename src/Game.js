@@ -50,26 +50,24 @@ class Game extends Component {
         super(props);
         this.state = {
             loot: 30,
-            wave: 0,
+            wave: {
+                number: 0,
+                secondsUntil: 10,
+                strength: 10,
+            },
+            secondsBetweenWaves: 10,
             lootPerSecond: 1.0,
-            strength: 0,
+            strength: 0.0,
         };
 
         this.updateGame = this.updateGame.bind(this);
         this.upgradeHandler = this.upgradeHandler.bind(this);
     }
-
-    updateGame() {
-        // Update the amount of loot we have
-        this.setState({
-            loot: this.state.loot + this.state.lootPerSecond,
-        });
-    }
-
+    
     upgradeHandler(e) {
         // Make sure we don't follow the link
         e.preventDefault();
-
+        
         // Extract key information from target
         const target = e.currentTarget;
         const type = target.getAttribute('type');
@@ -100,6 +98,35 @@ class Game extends Component {
             this.setState(newState)
         } else {
             alert("No! You can't! Not enough moneyz!")
+        }
+    }
+
+    getNextWaveStrength() {
+        return this.state.wave.strength * 2;
+    }
+    
+    updateGame() {
+        // Update the amount of loot we have
+        this.setState({
+            loot: this.state.loot + this.state.lootPerSecond,
+            wave: { ...this.state.wave,
+                secondsUntil: this.state.wave.secondsUntil - 1,
+            },
+        });
+
+        // Wave has arrived
+        if (this.state.wave.secondsUntil <= 0) {
+            // handle wave
+            console.log("Wave has arrived")
+
+            // if we survived
+            this.setState({
+                wave: { ...this.state.wave,
+                    number: this.state.wave.number + 1,
+                    secondsUntil: this.state.secondsBetweenWaves,
+                    strength: this.getNextWaveStrength()
+                },
+            });
         }
     }
 
