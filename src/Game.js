@@ -58,10 +58,10 @@ class Game extends Component {
             loot: 30,
             wave: {
                 number: 0,
-                secondsUntil: 10,
-                strength: 10,
+                secondsUntil: 60,
+                strength: 5,
             },
-            secondsBetweenWaves: 10,
+            secondsBetweenWaves: 60,
             lootPerSecond: 1.0,
             strength: 0.0,
         };
@@ -108,10 +108,20 @@ class Game extends Component {
     }
 
     getNextWaveStrength() {
-        return this.state.wave.strength * 2;
+        return this.state.wave.strength * 3;
+    }
+
+    isGameOver() {
+        return this.state.strength < 0;
     }
     
     updateGame() {
+        // Game over?
+        if (this.isGameOver()) {
+            clearInterval(this.gameUpdater);
+            alert("gid gud scrub");
+        }
+
         // Update the amount of loot we have
         this.setState({
             loot: this.state.loot + this.state.lootPerSecond,
@@ -124,6 +134,9 @@ class Game extends Component {
         if (this.state.wave.secondsUntil <= 0) {
             // handle wave
             console.log("Wave has arrived")
+            this.setState({
+                strength: this.state.strength - this.state.wave.strength,
+            })
 
             // if we survived
             this.setState({
