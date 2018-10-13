@@ -44,6 +44,12 @@ class Game extends Component {
             cost: 100,
             strength: 8,
         },
+        {
+            id: 3,
+            name: "Big boi",
+            cost: 250,
+            strength: 25,
+        },
     ]
 
     constructor(props) {
