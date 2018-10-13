@@ -65,7 +65,6 @@ class Game extends Component {
         const looter_id = target.getAttribute('looter_id');
         const looter_def = this.LOOTER_TYPES[looter_id];
         
-        //console.log(e, );
         // Can afford it
         if (this.state.loot >= looter_def['cost']) {
             // Update the number of looters
