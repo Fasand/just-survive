@@ -14,8 +14,8 @@ const InfoDisplay = (props) => {
     return (
         <div className="row">
             <h5 className="col-md-2 pt-3">Loot: <strong>{props.state.loot}</strong></h5>
-            <h5 className="col-md-2 pt-3">Strength: <strong>{props.state.strength}</strong></h5> 
             <h5 className="col-md-4 pt-3">Loot per second: <strong>{props.state.lootPerSecond}</strong></h5>
+            <h5 className="col-md-2 pt-3">Strength: <strong>{props.state.strength}</strong></h5> 
             <div className="col-md-4">
                 <div className="row">
                     <h2 className="col-md-6">Wave {wave.number}</h2>
