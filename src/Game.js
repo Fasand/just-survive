@@ -40,7 +40,7 @@ class Game extends Component {
         },
         {
             id: 2,
-            name: "Sir Cancelot",
+            name: "Sir Killcelot",
             cost: 100,
             strength: 8,
         },
@@ -70,6 +70,10 @@ class Game extends Component {
         this.upgradeHandler = this.upgradeHandler.bind(this);
     }
     
+    updateCost(cost) {
+        return Math.round(cost * 1.05);
+    }
+
     upgradeHandler(e) {
         // Make sure we don't follow the link
         e.preventDefault();
@@ -94,9 +98,10 @@ class Game extends Component {
             // Subtract loot used for purchase
             const newState = {...this.state}
             newState['loot'] -= definition['cost'];
+            // Update the upgrade cost
+            definition['cost'] = this.updateCost(definition['cost'])
             // At this point, we've checked it's either looter or defender
             if (type === 'looter') {
-                // Subtract loot and add lootPerSecond
                 newState['lootPerSecond'] += definition['lootPerSecond'];
             } else {
                 newState['strength'] += definition['strength'];
