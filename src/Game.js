@@ -14,12 +14,17 @@ class Game extends Component {
             cost: 30,
             lootPerSecond: 4,
         },
+        2: {
+            name: "Intermediate looter",
+            cost: 70,
+            lootPerSecond: 10,
+        },
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            stuff: 0,
+            loot: 0,
             people: 1,
             wave: 0,
             // Key is looter ID, val is number of said looter
@@ -29,6 +34,26 @@ class Game extends Component {
                 2: 0,
             }
         };
+
+        this.updateGame = this.updateGame.bind(this);
+    }
+
+    updateGame() {
+        let lps = 0;
+        for (let id in this.state.looters) {
+            let amount = this.state.looters[id];
+            let definition = this.LOOTER_TYPES[id];
+            // Aggregate all the loot per second
+            lps += definition['lootPerSecond'] * amount;
+        }
+        // Update the amount of loot we have
+        this.setState({
+            loot: this.state.loot + lps,
+        });
+    }
+
+    componentDidMount() {
+        this.gameUpdater = setInterval(this.updateGame, 1000);
     }
     
     render() {
