@@ -7,8 +7,8 @@ const UpgradePanel = (props) => (
             <div className="row">
                 <h3 className="col-12">Looters</h3>
                 {props.looters.map((looter) => (
-                    <div className="col-md-3 p-1">
-                        <div key={looter.id} className="card">
+                    <div key={looter.id} className="col-md-3 p-1">
+                        <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">{looter.name}</h5>
                                 <h6 className="card-subtitle mb-2 text-muted">Loot per second: {looter.lootPerSecond}</h6>
@@ -30,8 +30,8 @@ const UpgradePanel = (props) => (
             <div className="row">
                 <h3 className="col-12">Defenders</h3>
                 {props.defenders.map((defender) => (
-                    <div className="col-md-3 p-1">
-                        <div key={defender.id} className="card">
+                    <div key={defender.id} className="col-md-3 p-1">
+                        <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">{defender.name}</h5>
                                 <h6 className="card-subtitle mb-2 text-muted">Strength: {defender.strength}</h6>

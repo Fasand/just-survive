@@ -4,7 +4,7 @@ import UpgradePanel from './UpgradePanel';
 
 class Game extends Component {
 
-    LOOTER_TYPES = [
+    INITIAL_LOOTERS = [
         {
             id: 0,
             name: "Lame looter",
@@ -27,23 +27,23 @@ class Game extends Component {
             id: 3,
             name: "Rockomotor looter",
             cost: 1000,
-            lootPerSecond: 60,
+            lootPerSecond: 40,
         },
         {
             id: 4,
             name: "Antique hoarder",
             cost: 3500,
-            lootPerSecond: 240,
+            lootPerSecond: 120,
         },
         {
             id: 5,
             name: "Pensioners",
             cost: 5000,
-            lootPerSecond: 350,
+            lootPerSecond: 200,
         },
     ];
 
-    DEFENDER_TYPES = [
+    INITIAL_DEFENDERS = [
         {
             id: 0,
             name: "Defenseless child",
@@ -86,21 +86,26 @@ class Game extends Component {
             cost: 4000,
             strength: 500,
         },
-    ]
+    ];
+
+    INITIAL_STATE = JSON.stringify({
+        loot: this.props.initialLoot,
+        wave: {
+            number: 1,
+            secondsUntil: this.props.waveLength,
+            strength: this.props.initialWaveStrength,
+        },
+        secondsBetweenWaves: this.props.waveLength,
+        lootPerSecond: this.props.initialLootPerSecond,
+        strength: this.props.initialStrength,
+        looters: [...this.INITIAL_LOOTERS],
+        defenders: [...this.INITIAL_DEFENDERS],
+    });
 
     constructor(props) {
         super(props);
-        this.state = {
-            loot: 30,
-            wave: {
-                number: 0,
-                secondsUntil: 60,
-                strength: 5,
-            },
-            secondsBetweenWaves: 60,
-            lootPerSecond: 1.0,
-            strength: 0.0,
-        };
+        // Initial state is saved as a string to force immutability
+        this.state = JSON.parse(this.INITIAL_STATE);
 
         this.updateGame = this.updateGame.bind(this);
         this.upgradeHandler = this.upgradeHandler.bind(this);
@@ -122,9 +127,9 @@ class Game extends Component {
         // Decide on the type of the upgrade
         let definition;
         if (type === 'looter') {
-            definition = this.LOOTER_TYPES[id];
+            definition = this.state.looters[id];
         } else if (type === 'defender') {
-            definition = this.DEFENDER_TYPES[id];
+            definition = this.state.defenders[id];
         } else {
             throw new TypeError("You can only upgrade looters & defenders.");
         }
@@ -159,8 +164,9 @@ class Game extends Component {
     updateGame() {
         // Game over?
         if (this.isGameOver()) {
-            clearInterval(this.gameUpdater);
-            alert("gid gud scrub");
+            this.gameOver();
+            this.startGame();
+            return;
         }
 
         // Update the amount of loot we have
@@ -190,18 +196,28 @@ class Game extends Component {
         }
     }
 
-    componentDidMount() {
+    startGame() {
+        this.setState(JSON.parse(this.INITIAL_STATE));
         this.gameUpdater = setInterval(this.updateGame, 1000);
+    }
+
+    gameOver() {
+        clearInterval(this.gameUpdater);
+        alert("gid gud scrub");
+    }
+
+    componentDidMount() {
+        this.startGame();
     }
     
     render() {
         return (
             <div className="container">
                 <InfoDisplay    state={this.state}
-                                looters={this.LOOTER_TYPES} />
+                                looters={this.state.looters} />
                 <UpgradePanel loot={this.state.loot}
-                            looters={this.LOOTER_TYPES}
-                            defenders={this.DEFENDER_TYPES}
+                            looters={this.state.looters}
+                            defenders={this.state.defenders}
                             upgradeHandler={this.upgradeHandler} />
             </div>
         )
