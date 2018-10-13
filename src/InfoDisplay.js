@@ -8,27 +8,24 @@ const InfoDisplay = (props) => {
     let progress_status = progress_width < 70 ? 'success' : 'danger'
     return (
         <div className="row">
-            <div className="col-md-6">
-                <h2>Essentials</h2>
-                <ul>
-                    <li>Wave #: {wave.number}</li>
-                    <li>Wave strength: {wave.strength}</li>
-                    <li>Loot: {props.state.loot}</li>
-                    <li>Loot per second: {props.state.lootPerSecond}</li>
-                    <li>Strength: {props.state.strength}</li> 
-                </ul>
-            </div>
-            <div className="col-md-6">
-            <div className="progress">
-                <div    className={`progress-bar bg-${progress_status}`}
-                        role="progressbar" 
+            <h5 className="col-md-2 pt-3">Loot: <strong>{props.state.loot}</strong></h5>
+            <h5 className="col-md-2 pt-3">Strength: <strong>{props.state.strength}</strong></h5> 
+            <h5 className="col-md-4 pt-3">Loot per second: <strong>{props.state.lootPerSecond}</strong></h5>
+            <div className="col-md-4">
+                <div className="row">
+                    <h2 className="col-md-6">Wave {wave.number}</h2>
+                    <h3 className="col-md-6">Strength: {wave.strength}</h3>
+                </div>
+                <div className="progress">
+                    <div role="progressbar" 
+                        className={`progress-bar bg-${progress_status}`}
                         style={{
                             width:`${progress_width}%`
                         }} 
                         aria-valuenow={props.state.secondsUntilWave} 
                         aria-valuemin="0" 
                         aria-valuemax={props.state.secondsBetweenWaves}></div>
-            </div>
+                </div>
             </div>
         </div>
     )

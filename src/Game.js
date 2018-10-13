@@ -197,11 +197,11 @@ class Game extends Component {
 
     startGame() {
         this.setState(JSON.parse(this.INITIAL_STATE));
-        this.gameUpdater = setInterval(this.updateGame, 1000);
+        this.state.gameUpdater = setInterval(this.updateGame, 1000);
     }
 
     gameOver() {
-        clearInterval(this.gameUpdater);
+        clearInterval(this.state.gameUpdater);
         alert("gid gud scrub");
         this.props.endGame();
     }
