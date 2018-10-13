@@ -88,12 +88,12 @@ class Game extends Component {
     
     render() {
         return (
-            <div>
-                <InfoDisplay  state={this.state}
-                              looters={this.LOOTER_TYPES} />
+            <div className="container">
+                <InfoDisplay    state={this.state}
+                                looters={this.LOOTER_TYPES} />
                 <UpgradePanel loot={this.state.loot}
-                              looters={this.LOOTER_TYPES}
-                              upgradeHandler={this.upgradeHandler} />
+                            looters={this.LOOTER_TYPES}
+                            upgradeHandler={this.upgradeHandler} />
             </div>
         )
     }
