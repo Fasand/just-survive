@@ -8,27 +8,27 @@ class Game extends Component {
         {
             id: 0,
             name: "Lame looter",
-            cost: 10,
+            cost: 30,
             lootPerSecond: 1,
         },
         {
             id: 1,
             name: "Rookie looter",
-            cost: 30,
+            cost: 100,
             lootPerSecond: 4,
         },
         {
             id: 2,
             name: "Intermediate looter",
-            cost: 70,
-            lootPerSecond: 10,
+            cost: 250,
+            lootPerSecond: 12,
         },
     ];
 
     constructor(props) {
         super(props);
         this.state = {
-            loot: 10,
+            loot: 30,
             people: 1,
             wave: 0,
             // Key is looter ID, val is number of said looter
@@ -45,7 +45,6 @@ class Game extends Component {
 
     updateGame() {
         let lps = 0;
-        console.log(this.state, this.LOOTER_TYPES);
         for (let id in this.state.looters) {
             let amount = this.state.looters[id];
             let definition = this.LOOTER_TYPES[id];
@@ -59,10 +58,14 @@ class Game extends Component {
     }
 
     upgradeHandler(e) {
-        const target = e.target;
+        // Make sure we don't follow the link
+        e.preventDefault();
+
+        const target = e.currentTarget;
         const looter_id = target.getAttribute('looter_id');
         const looter_def = this.LOOTER_TYPES[looter_id];
         
+        //console.log(e, );
         // Can afford it
         if (this.state.loot >= looter_def['cost']) {
             // Update the number of looters
@@ -87,7 +90,8 @@ class Game extends Component {
     render() {
         return (
             <div>
-                <InfoDisplay state={this.state} />
+                <InfoDisplay  state={this.state}
+                              looters={this.LOOTER_TYPES} />
                 <UpgradePanel loot={this.state.loot}
                               looters={this.LOOTER_TYPES}
                               upgradeHandler={this.upgradeHandler} />

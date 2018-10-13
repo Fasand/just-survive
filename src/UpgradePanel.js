@@ -5,11 +5,17 @@ const UpgradePanel = (props) => (
         <h2>Upgrade panel</h2>
         <h3>Looters</h3>
         {props.looters.map((looter) => (
-            <button key={looter.id}
-                    looter_id={looter.id} 
-                    onClick={props.upgradeHandler}>
-                {looter.name}
-            </button>
+            <a  className="upgradeButton"
+                href={`#buy-looter-${looter.id}`}
+                key={looter.id}
+                looter_id={looter.id} 
+                onClick={props.upgradeHandler}>
+                <div>
+                    <p>{looter.name}</p>
+                    <p>{looter.cost}</p>
+                    <p>{looter.lootPerSecond}</p>
+                </div>
+            </a>
         ))}
         
     </div>

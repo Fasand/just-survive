@@ -1,0 +1,10 @@
+.upgradeButton {
+    float:left;
+}
+
+.upgradeButton div {
+    width: 100px;
+    padding: 15px;
+    background-color: #efefef;
+    border: 1px solid black;
+}
