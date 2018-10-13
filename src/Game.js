@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import InfoDisplay from './InfoDisplay';
+import UpgradePanel from './UpgradePanel';
 
 class Game extends Component {
 
-    LOOTER_TYPES = {
-        0: {
+    LOOTER_TYPES = [
+        {
+            id: 0,
             name: "Lame looter",
             cost: 10,
             lootPerSecond: 1,
         },
-        1: {
+        {
+            id: 1,
             name: "Rookie looter",
             cost: 30,
             lootPerSecond: 4,
         },
-        2: {
+        {
+            id: 2,
             name: "Intermediate looter",
             cost: 70,
             lootPerSecond: 10,
         },
-    };
+    ];
 
     constructor(props) {
         super(props);
         this.state = {
-            loot: 0,
+            loot: 10,
             people: 1,
             wave: 0,
             // Key is looter ID, val is number of said looter
@@ -36,10 +40,12 @@ class Game extends Component {
         };
 
         this.updateGame = this.updateGame.bind(this);
+        this.upgradeHandler = this.upgradeHandler.bind(this);
     }
 
     updateGame() {
         let lps = 0;
+        console.log(this.state, this.LOOTER_TYPES);
         for (let id in this.state.looters) {
             let amount = this.state.looters[id];
             let definition = this.LOOTER_TYPES[id];
@@ -52,6 +58,28 @@ class Game extends Component {
         });
     }
 
+    upgradeHandler(e) {
+        const target = e.target;
+        const looter_id = target.getAttribute('looter_id');
+        const looter_def = this.LOOTER_TYPES[looter_id];
+        
+        // Can afford it
+        if (this.state.loot >= looter_def['cost']) {
+            // Update the number of looters
+            let updatedLooters = {
+                ...this.state.looters,
+            }
+            updatedLooters[looter_id]++;
+            // Push update to state
+            this.setState({
+                loot: this.state.loot - looter_def['cost'],
+                looters: updatedLooters
+            })
+        } else {
+            alert("No! You can't! Not enough moneyz!")
+        }
+    }
+
     componentDidMount() {
         this.gameUpdater = setInterval(this.updateGame, 1000);
     }
@@ -60,7 +88,9 @@ class Game extends Component {
         return (
             <div>
                 <InfoDisplay state={this.state} />
-                <h1>Hello from the Game</h1>
+                <UpgradePanel loot={this.state.loot}
+                              looters={this.LOOTER_TYPES}
+                              upgradeHandler={this.upgradeHandler} />
             </div>
         )
     }
