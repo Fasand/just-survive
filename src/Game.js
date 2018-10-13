@@ -111,6 +111,7 @@ class Game extends Component {
 
         this.updateGame = this.updateGame.bind(this);
         this.upgradeHandler = this.upgradeHandler.bind(this);
+        this.gameOver = this.gameOver.bind(this);
     }
     
     updateCost(cost) {
@@ -204,7 +205,6 @@ class Game extends Component {
 
     gameOver() {
         clearInterval(this.state.gameUpdater);
-        alert("gid gud scrub");
         this.props.endGame();
     }
 
@@ -221,6 +221,9 @@ class Game extends Component {
                             looters={this.state.looters}
                             defenders={this.state.defenders}
                             upgradeHandler={this.upgradeHandler} />
+                <div className="footer text-right">
+                    <button className="btn btn-danger mt-3" onClick={this.gameOver}>Reset game</button>
+                </div>
             </div>
         )
     }
