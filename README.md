@@ -1,3 +1,13 @@
+-- THIS IS MY UPDATE WITH THE SPECIAL FUNCTIONALITY --
+
+I've added purchasing immunity however, my 'flagging' method is very crude and doesn't work past the first round and I can't figure out why yet. The game also seems to crash when trying to purchase the immunity for some reason; as it cannot fetch the cash value or whatever. Please let me know what is wrong with my code thanks :). 
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
