@@ -165,7 +165,6 @@ class Game extends Component {
         // Game over?
         if (this.isGameOver()) {
             this.gameOver();
-            this.startGame();
             return;
         }
 
@@ -204,6 +203,7 @@ class Game extends Component {
     gameOver() {
         clearInterval(this.gameUpdater);
         alert("gid gud scrub");
+        this.props.endGame();
     }
 
     componentDidMount() {
