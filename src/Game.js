@@ -29,14 +29,9 @@ class Game extends Component {
         super(props);
         this.state = {
             loot: 30,
-            people: 1,
             wave: 0,
-            // Key is looter ID, val is number of said looter
-            looters: {
-                0: 1,
-                1: 0,
-                2: 0,
-            }
+            lootPerSecond: 1.0,
+            strength: 0,
         };
 
         this.updateGame = this.updateGame.bind(this);
@@ -44,16 +39,9 @@ class Game extends Component {
     }
 
     updateGame() {
-        let lps = 0;
-        for (let id in this.state.looters) {
-            let amount = this.state.looters[id];
-            let definition = this.LOOTER_TYPES[id];
-            // Aggregate all the loot per second
-            lps += definition['lootPerSecond'] * amount;
-        }
         // Update the amount of loot we have
         this.setState({
-            loot: this.state.loot + lps,
+            loot: this.state.loot + this.state.lootPerSecond,
         });
     }
 
@@ -65,17 +53,12 @@ class Game extends Component {
         const looter_id = target.getAttribute('looter_id');
         const looter_def = this.LOOTER_TYPES[looter_id];
         
-        // Can afford it
+        // Can afford it, so buy it
         if (this.state.loot >= looter_def['cost']) {
-            // Update the number of looters
-            let updatedLooters = {
-                ...this.state.looters,
-            }
-            updatedLooters[looter_id]++;
-            // Push update to state
+            // Subtract loot and add lootPerSecond
             this.setState({
                 loot: this.state.loot - looter_def['cost'],
-                looters: updatedLooters
+                lootPerSecond: this.state.lootPerSecond + looter_def['lootPerSecond']
             })
         } else {
             alert("No! You can't! Not enough moneyz!")
