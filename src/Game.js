@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import InfoDisplay from './InfoDisplay';
 import UpgradePanel from './UpgradePanel';
+import Settlement from './Settlement';
 
 class Game extends Component {
 
-    WAVE_STRENGTHS = [5, 10, 20, 35, 60, 120, 190, 270, 350, 800, 1000, 1200, 1500, 1800, 2200]
+    WAVE_STRENGTHS = [5, 10, 20, 35, 60, 120, 190, 270, 350, 430, 500, 580, 650, 750, 900]
     
     INITIAL_LOOTERS = [
         {
@@ -221,10 +222,14 @@ class Game extends Component {
     }
     
     render() {
+        // Render the plane if its price has changed
+        let renderAFP = this.state.defenders[6]['cost'] != this.INITIAL_DEFENDERS[6]['cost'];
         return (
             <div className="container">
                 <InfoDisplay    state={this.state}
                                 looters={this.state.looters} />
+                <Settlement lps={this.state.lootPerSecond}
+                            aFuckingPlane={renderAFP}/>
                 <UpgradePanel loot={this.state.loot}
                             looters={this.state.looters}
                             defenders={this.state.defenders}
