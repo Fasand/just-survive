@@ -4,7 +4,7 @@ import UpgradePanel from './UpgradePanel';
 
 class Game extends Component {
 
-    WAVE_STRENGTHS = [5, 10, 20, 35, 60, 120, 190, 270, 350, 800, 1000]
+    WAVE_STRENGTHS = [5, 10, 20, 35, 60, 120, 190, 270, 350, 800, 1000, 1200, 1500, 1800, 2200]
     
     INITIAL_LOOTERS = [
         {
@@ -82,7 +82,7 @@ class Game extends Component {
         wave: {
             number: 1,
             secondsUntil: this.props.waveLength,
-            strength: this.props.initialWaveStrength,
+            strength: this.getNextWaveStrength(true),
         },
         secondsBetweenWaves: this.props.waveLength,
         lootPerSecond: this.props.initialLootPerSecond,
@@ -143,12 +143,19 @@ class Game extends Component {
         }
     }
 
-    getNextWaveStrength() {
-        return this.WAVE_STRENGTHS[this.state.wave.number];
+    getNextWaveStrength(init = null) {
+        if (init !== null)
+            return this.WAVE_STRENGTHS[0];
+        else
+            return this.WAVE_STRENGTHS[this.state.wave.number];
     }
 
     isGameOver() {
         return this.state.defense < 0;
+    }
+
+    isLastWave() {
+        return this.state.wave.number >= this.WAVE_STRENGTHS.length;
     }
     
     updateGame() {
@@ -174,6 +181,12 @@ class Game extends Component {
                 defense: this.state.defense - this.state.wave.strength,
             })
 
+            // We've reached the last wave
+            if(this.isLastWave()) {
+                console.log("LAST WAVE "+this.state.wave.number);
+                return this.gameOver(true);
+            }
+
             // if we survived
             this.setState({
                 wave: { ...this.state.wave,
@@ -190,9 +203,9 @@ class Game extends Component {
         this.state.gameUpdater = setInterval(this.updateGame, 1000);
     }
 
-    gameOver() {
+    gameOver(won = false) {
         clearInterval(this.state.gameUpdater);
-        this.props.gameOver({
+        this.props.gameOver(won, {
             endWave: this.state.wave.number - 1,
             lootPerSecond: this.state.lootPerSecond,
             defense: this.state.defense,

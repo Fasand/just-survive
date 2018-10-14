@@ -11,6 +11,7 @@ const GameWrapper = (props) => {
   // Game over
   else if (props.gameIsOver) {
     return <GameOver stats={props.gameOverStats}
+                    won={props.gameOverWon}
                     restartGame={props.restartGame}/>
   }
   // Start new game
@@ -51,11 +52,12 @@ class App extends Component {
     });
   }
 
-  gameOver(stats) {
+  gameOver(won, stats) {
     this.setState({
       gameIsRunning: false,
       gameIsOver: true,
       gameOverStats: stats,
+      gameOverWon: won,
     })
   }
 
@@ -67,7 +69,8 @@ class App extends Component {
                     startGame={this.startGame}
                     restartGame={this.restartGame}
                     gameOver={this.gameOver}
-                    gameOverStats={this.state.gameOverStats}>
+                    gameOverStats={this.state.gameOverStats}
+                    gameOverWon={this.state.gameOverWon}>
           <Game waveLength={40}
             initialWaveStrength={5}
             initialLootPerSecond={1}
