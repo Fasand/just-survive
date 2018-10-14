@@ -4,7 +4,7 @@ import UpgradePanel from './UpgradePanel';
 
 class Game extends Component {
 
-    WAVE_STRENGTHS = [5, 10, 20, 35, 60, 120, 300, 450, 600, 800, 1000]
+    WAVE_STRENGTHS = [5, 10, 20, 35, 60, 120, 190, 270, 350, 800, 1000]
     
     INITIAL_LOOTERS = [
         {
@@ -115,7 +115,7 @@ class Game extends Component {
     }
     
     updateCost(cost) {
-        return Math.round(cost * 1.15);
+        return Math.round(cost * 1.10);
     }
 
     upgradeHandler(e) {
