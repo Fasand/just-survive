@@ -6,8 +6,8 @@ const UpgradePanel = (props) => (
         <div className="col-12">
             <div className="row">
                 <h3 className="col-12">Looters</h3>
-                {props.looters.map((looter) => (
-                    <div key={looter.id} className="col-md-3 p-1">
+                {props.looters.map((looter, id) => (
+                    <div key={id} className="col-md-3 p-1">
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">{looter.name}</h5>
@@ -15,7 +15,7 @@ const UpgradePanel = (props) => (
                                 {/* <p className="card-text"></p> */}
                                 <button className="btn btn-primary"
                                         type="looter"
-                                        id={looter.id} 
+                                        id={id} 
                                         onClick={props.upgradeHandler}
                                         disabled={props.loot < looter.cost}>
                                     Buy for {looter.cost} loot
@@ -29,8 +29,8 @@ const UpgradePanel = (props) => (
         <div className="col-12">
             <div className="row">
                 <h3 className="col-12">Defenders</h3>
-                {props.defenders.map((defender) => (
-                    <div key={defender.id} className="col-md-3 p-1">
+                {props.defenders.map((defender, id) => (
+                    <div key={id} className="col-md-3 p-1">
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">{defender.name}</h5>
@@ -38,7 +38,7 @@ const UpgradePanel = (props) => (
                                 {/* <p className="card-text"></p> */}
                                 <button className="btn btn-primary"
                                         type="defender"
-                                        id={defender.id} 
+                                        id={id} 
                                         onClick={props.upgradeHandler}
                                         disabled={props.loot < defender.cost}>
                                     Buy for {defender.cost} loot

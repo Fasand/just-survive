@@ -8,37 +8,31 @@ class Game extends Component {
     
     INITIAL_LOOTERS = [
         {
-            id: 0,
             name: "Lame looter",
             cost: 15,
             lootPerSecond: 1,
         },
         {
-            id: 1,
-            name: "Rookie looter",
+            name: "A pack of rats",
             cost: 100,
             lootPerSecond: 8,
         },
         {
-            id: 2,
             name: "Looter on a scooter",
             cost: 500,
             lootPerSecond: 24,
         },
         {
-            id: 3,
             name: "Rockomotor looter",
             cost: 2200,
             lootPerSecond: 69,
         },
         {
-            id: 4,
             name: "Antique hoarder",
             cost: 9001,
             lootPerSecond: 200,
         },
         {
-            id: 5,
             name: "Pensioners",
             cost: 50000,
             lootPerSecond: 600,
@@ -47,43 +41,36 @@ class Game extends Component {
 
     INITIAL_DEFENDERS = [
         {
-            id: 0,
             name: "Defenseless child",
             cost: 5,
             strength: 1,
         },
         {
-            id: 1,
             name: "Jeff",
             cost: 50,
             strength: 4,
         },
         {
-            id: 2,
             name: "Sir Killcelot",
             cost: 250,
             strength: 8,
         },
         {
-            id: 3,
             name: "Big boi",
             cost: 1000,
             strength: 20,
         },
         {
-            id: 4,
-            name: "Scooter monkey",
+            name: "Autonomous car",
             cost: 4500,
             strength: 50,
         },
         {
-            id: 5,
-            name: "Tank of Justice",
+            name: "Doma-Coof",
             cost: 20000,
             strength: 90,
         },
         {
-            id: 6,
             name: "A fucking plane",
             cost: 50000,
             strength: 150,
