@@ -17,8 +17,15 @@ const GameWrapper = (props) => {
   // Start new game
   else {
     return (
-      <div className="text-center" style={{marginTop: '40vh'}}>
-        <button className="btn btn-success btn-lg" 
+      <div className="text-center" style={{marginTop: '30vh'}}>
+        <div className="card text-white bg-info mx-auto" style={{maxWidth: '60vw'}}>
+          <div className="card-header card-title" style={{fontSize: '15pt'}}><strong>Just Survive</strong></div>
+          <div className="card-body" style={{fontSize: '13pt'}}>
+            <p className="card-text">On the 14th of October 2018 that was when the “new world” was formed. Doomsbury. Civilization collapsed following the aftermath of the continuous feud between the prior ruler of the world, Scotland, and their nearby nasty neighbours... the English. England’s naive notion that they could compete against the otherworldly strength of the Scots lead to mass devastation once they declared nuclear war. Alas, Doomsbury was formed.</p>
+            <p className="card-text">Now, brave warrior it is your job to defend against the heathen scum attempting to claim the once beautiful nation you called home. Be courageous my friend, remember the importance of your mission. FREEDOM!</p>
+          </div>
+        </div>
+        <button className="btn btn-success btn-lg mt-4" 
                 onClick={props.startGame}>
                 Start game</button>
       </div>
