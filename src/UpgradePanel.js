@@ -15,7 +15,7 @@ const UpgradePanel = (props) => {
                                 id={id} 
                                 onClick={props.upgradeHandler}
                                 disabled={props.loot < looter.cost}>
-                            <div className="card-body">
+                            <div className="card-body p-1">
                                 <img className="img-fluid"
                                     alt={looter.name}
                                     src={`${process.env.PUBLIC_URL}/looters/${getImageUrl(looter.name)}.png`} />
@@ -33,20 +33,20 @@ const UpgradePanel = (props) => {
                 <h3 className="col-12">Defenders</h3>
                 {props.defenders.map((defender, id) => (
                     <div key={id} className="col-md-3 p-1">
-                        <div className="card">
-                            <div className="card-body">
+                        <button className={`card upgrade-card btn ${props.loot < defender.cost ? 'btn-outline-danger' : 'btn-light'}`}
+                                type="defender"
+                                id={id} 
+                                onClick={props.upgradeHandler}
+                                disabled={props.loot < defender.cost}>
+                            <div className="card-body p-1">
+                                <img className="img-fluid"
+                                    alt={defender.name}
+                                    src={`${process.env.PUBLIC_URL}/defenders/${getImageUrl(defender.name)}.png`} />
                                 <h5 className="card-title">{defender.name}</h5>
-                                <h6 className="card-subtitle mb-2 text-muted">Strength: {defender.defense}</h6>
-                                {/* <p className="card-text"></p> */}
-                                <button className="btn btn-primary"
-                                        type="defender"
-                                        id={id} 
-                                        onClick={props.upgradeHandler}
-                                        disabled={props.loot < defender.cost}>
-                                    Buy for {defender.cost} loot
-                                </button>
+                                <h6 className="card-subtitle float-left text-muted">Cost: <strong>{defender.cost}</strong></h6>
+                                <h6 className="card-subtitle float-right text-muted">Defense: <strong>{defender.defense}</strong></h6>
                             </div>
-                        </div>
+                        </button>
                     </div>
                 ))}
             </div>

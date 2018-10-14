@@ -61,7 +61,7 @@ class Game extends Component {
             defense: 20,
         },
         {
-            name: "Autonomous car",
+            name: "A tank of justice",
             cost: 4500,
             defense: 50,
         },
@@ -206,7 +206,7 @@ class Game extends Component {
     gameOver(won = false) {
         clearInterval(this.state.gameUpdater);
         this.props.gameOver(won, {
-            endWave: this.state.wave.number - 1,
+            endWave: won ? this.state.wave.number : this.state.wave.number - 1,
             lootPerSecond: this.state.lootPerSecond,
             defense: this.state.defense,
         });

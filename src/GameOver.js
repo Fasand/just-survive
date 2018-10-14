@@ -5,9 +5,9 @@ const GameOver = (props) => {
         <div className="text-center" style={{marginTop: '35vh'}}>
             {props.won 
                 ? <h1><u>Congratulations! You Won!</u></h1> 
-                : <h1><u>GAME OVER</u></h1>}
+                : <h1><u>GID GUD SCRUB</u></h1>}
             <h2>You survived until wave <strong>{props.stats.endWave}</strong></h2>
-            <ul style={{listStyle: 'none'}}>
+            <ul style={{listStyle: 'none'}} class="text-center">
                 <li>Loot per second: {props.stats.lootPerSecond}</li>
                 {props.won
                     ? <li>Defense left: {props.stats.defense}</li>

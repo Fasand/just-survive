@@ -12,7 +12,7 @@ const InfoDisplay = (props) => {
     else progress_status = 'danger';
 
     return (
-        <div className="row">
+        <div className="row sticky-top info-display mb-2 pb-2">
             <h5 className="col-md-2 pt-3">Loot: <strong>{props.state.loot}</strong></h5>
             <h5 className="col-md-4 pt-3">Loot per second: <strong>{props.state.lootPerSecond}</strong></h5>
             <h5 className="col-md-2 pt-3">Defense: <strong>{props.state.defense}</strong></h5> 
