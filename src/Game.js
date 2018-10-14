@@ -13,7 +13,7 @@ class Game extends Component {
             lootPerSecond: 1,
         },
         {
-            name: "A pack of rats",
+            name: "Rat boi",
             cost: 100,
             lootPerSecond: 8,
         },
@@ -33,7 +33,7 @@ class Game extends Component {
             lootPerSecond: 200,
         },
         {
-            name: "Pensioners",
+            name: "Pensioner",
             cost: 50000,
             lootPerSecond: 600,
         },
