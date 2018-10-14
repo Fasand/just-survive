@@ -17,7 +17,7 @@ const GameWrapper = (props) => {
   // Start new game
   else {
     return (
-      <div className="text-center" style={{marginTop: '30vh'}}>
+      <div className="text-center" style={{marginTop: '10vh'}}>
         <div className="card text-white bg-info mx-auto" style={{maxWidth: '60vw'}}>
           <div className="card-header card-title" style={{fontSize: '15pt'}}><strong>Just Survive</strong></div>
           <div className="card-body" style={{fontSize: '13pt'}}>
@@ -28,6 +28,12 @@ const GameWrapper = (props) => {
         <button className="btn btn-success btn-lg mt-4" 
                 onClick={props.startGame}>
                 Start game</button>
+        <div id="welcome-imgs" className="mx-auto">
+          <img id="welcome-left" className="welcome-img"
+              src={`${process.env.PUBLIC_URL}/welcome/left.png`} />
+          <img id="welcome-right" className="welcome-img"
+              src={`${process.env.PUBLIC_URL}/welcome/right.png`} />
+        </div>
       </div>
     )
   }

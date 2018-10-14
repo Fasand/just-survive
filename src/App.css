@@ -10,3 +10,16 @@
     background-color: white;
     box-shadow: 0px 9px 7px -7px rgba(0,0,0,0.2);
 }
+
+#welcome-imgs {
+    width: 60vw;
+}
+#welcome-imgs img {
+    max-height: 40vh;
+}
+#welcome-left {
+    float: left;
+}
+#welcome-right {
+    float: right;
+}
