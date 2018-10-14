@@ -10,7 +10,7 @@ const UpgradePanel = (props) => {
                 <h3 className="col-12">Looters</h3>
                 {props.looters.map((looter, id) => (
                     <div key={id} className="col-md-3 p-1">
-                        <button className={`card upgrade-card btn ${props.loot < looter.cost ? 'btn-outline-danger' : 'btn-light'}`}
+                        <button className={`card upgrade-card btn ${props.loot < looter.cost ? 'btn-outline-danger disabled' : 'btn-light'}`}
                                 type="looter"
                                 id={id} 
                                 onClick={props.upgradeHandler}
@@ -33,7 +33,7 @@ const UpgradePanel = (props) => {
                 <h3 className="col-12">Defenders</h3>
                 {props.defenders.map((defender, id) => (
                     <div key={id} className="col-md-3 p-1">
-                        <button className={`card upgrade-card btn ${props.loot < defender.cost ? 'btn-outline-danger' : 'btn-light'}`}
+                        <button className={`card upgrade-card btn ${props.loot < defender.cost ? 'btn-outline-danger disabled' : 'btn-light'}`}
                                 type="defender"
                                 id={id} 
                                 onClick={props.upgradeHandler}
