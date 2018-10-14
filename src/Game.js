@@ -43,37 +43,37 @@ class Game extends Component {
         {
             name: "Defenseless child",
             cost: 5,
-            strength: 1,
+            defense: 1,
         },
         {
             name: "Jeff",
             cost: 50,
-            strength: 4,
+            defense: 4,
         },
         {
             name: "Sir Killcelot",
             cost: 250,
-            strength: 8,
+            defense: 8,
         },
         {
             name: "Big boi",
             cost: 1000,
-            strength: 20,
+            defense: 20,
         },
         {
             name: "Autonomous car",
             cost: 4500,
-            strength: 50,
+            defense: 50,
         },
         {
             name: "Doma-Coof",
             cost: 20000,
-            strength: 90,
+            defense: 90,
         },
         {
             name: "A fucking plane",
             cost: 50000,
-            strength: 150,
+            defense: 150,
         },
     ];
 
@@ -86,7 +86,7 @@ class Game extends Component {
         },
         secondsBetweenWaves: this.props.waveLength,
         lootPerSecond: this.props.initialLootPerSecond,
-        strength: this.props.initialStrength,
+        defense: this.props.initialDefense,
         looters: [...this.INITIAL_LOOTERS],
         defenders: [...this.INITIAL_DEFENDERS],
     });
@@ -135,7 +135,7 @@ class Game extends Component {
             if (type === 'looter') {
                 newState['lootPerSecond'] += definition['lootPerSecond'];
             } else {
-                newState['strength'] += definition['strength'];
+                newState['defense'] += definition['defense'];
             }
             this.setState(newState)
         } else {
@@ -148,7 +148,7 @@ class Game extends Component {
     }
 
     isGameOver() {
-        return this.state.strength < 0;
+        return this.state.defense < 0;
     }
     
     updateGame() {
@@ -171,7 +171,7 @@ class Game extends Component {
             // handle wave
             console.log("Wave has arrived")
             this.setState({
-                strength: this.state.strength - this.state.wave.strength,
+                defense: this.state.defense - this.state.wave.strength,
             })
 
             // if we survived
@@ -195,7 +195,7 @@ class Game extends Component {
         this.props.gameOver({
             endWave: this.state.wave.number - 1,
             lootPerSecond: this.state.lootPerSecond,
-            strength: this.state.strength,
+            defense: this.state.defense,
         });
     }
 

@@ -71,7 +71,7 @@ class App extends Component {
           <Game waveLength={40}
             initialWaveStrength={5}
             initialLootPerSecond={1}
-            initialStrength={0}
+            initialDefense={0}
             initialLoot={5}
             restartGame={this.restartGame}
             gameOver={this.gameOver} />
