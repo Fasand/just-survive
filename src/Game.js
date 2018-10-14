@@ -205,11 +205,19 @@ class Game extends Component {
 
     gameOver() {
         clearInterval(this.state.gameUpdater);
-        this.props.endGame();
+        this.props.gameOver({
+            endWave: this.state.wave.number - 1,
+            lootPerSecond: this.state.lootPerSecond,
+            strength: this.state.strength,
+        });
     }
 
     componentDidMount() {
         this.startGame();
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.gameUpdater);
     }
     
     render() {
@@ -222,7 +230,7 @@ class Game extends Component {
                             defenders={this.state.defenders}
                             upgradeHandler={this.upgradeHandler} />
                 <div className="footer text-right">
-                    <button className="btn btn-danger mt-3" onClick={this.gameOver}>Reset game</button>
+                    <button className="btn btn-danger mt-3" onClick={this.props.restartGame}>Restart game</button>
                 </div>
             </div>
         )

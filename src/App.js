@@ -1,41 +1,81 @@
 import React, { Component } from 'react';
 import './App.css';
 import Game from './Game';
+import GameOver from './GameOver';
+
+const GameWrapper = (props) => {
+  // Render game
+  if (props.gameIsRunning) {
+    return props.children;
+  }
+  // Game over
+  else if (props.gameIsOver) {
+    return <GameOver stats={props.gameOverStats}
+                    restartGame={props.restartGame}/>
+  }
+  // Start new game
+  else {
+    return (
+      <div className="text-center" style={{marginTop: '40vh'}}>
+        <button className="btn btn-success btn-lg" 
+                onClick={props.startGame}>
+                Start game</button>
+      </div>
+    )
+  }
+
+}
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameRunning: false,
+      gameIsRunning: false,
+      gameIsOver: false,
     }
     this.startGame = this.startGame.bind(this);
-    this.endGame = this.endGame.bind(this);
+    this.restartGame = this.restartGame.bind(this);
+    this.gameOver = this.gameOver.bind(this);
   }
 
   startGame() {
-    this.setState({'gameRunning':true});
+    this.setState({
+      gameIsRunning: true,
+    });
   }
 
-  endGame() {
-    this.setState({'gameRunning':false});
+  restartGame() {
+    this.setState({
+      gameIsRunning: false,
+      gameIsOver: false,
+    });
+  }
+
+  gameOver(stats) {
+    this.setState({
+      gameIsRunning: false,
+      gameIsOver: true,
+      gameOverStats: stats,
+    })
   }
 
   render() {
     return (
       <div>
-        <h1>{this.state.gameRunning}</h1>
-      {this.state.gameRunning === true
-        ? <Game waveLength={40}
-                initialWaveStrength={5}
-                initialLootPerSecond={1}
-                initialStrength={0}
-                initialLoot={5}
-                endGame={this.endGame} /> 
-        : <div className="text-center" style={{marginTop: '40vh'}}>
-            <button className="btn btn-success btn-lg" 
-                    onClick={this.startGame}>
-                    Start game</button>
-          </div>}
+        <GameWrapper gameIsRunning={this.state.gameIsRunning}
+                    gameIsOver={this.state.gameIsOver}
+                    startGame={this.startGame}
+                    restartGame={this.restartGame}
+                    gameOver={this.gameOver}
+                    gameOverStats={this.state.gameOverStats}>
+          <Game waveLength={40}
+            initialWaveStrength={5}
+            initialLootPerSecond={1}
+            initialStrength={0}
+            initialLoot={5}
+            restartGame={this.restartGame}
+            gameOver={this.gameOver} />
+        </GameWrapper>
       </div>
     );
   }
